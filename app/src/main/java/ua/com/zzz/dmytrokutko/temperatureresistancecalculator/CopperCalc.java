@@ -40,7 +40,7 @@ public class CopperCalc extends AppCompatActivity implements AdapterView.OnItemS
     private void initView() {
         etValue = findViewById(R.id.etValueCop);
         rGroup = findViewById(R.id.rgCop);
-        rgAlpha = findViewById(R.id.rgAlphaCopper);
+        rgAlpha = findViewById(R.id.rgAlphaCop);
         btnCalculate = findViewById(R.id.btnCalculateCop);
         tvResult = findViewById(R.id.tvResultCop);
         spinner = findViewById(R.id.spinnerCop);

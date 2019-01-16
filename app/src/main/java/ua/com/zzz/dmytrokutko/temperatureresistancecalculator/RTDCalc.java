@@ -105,7 +105,33 @@ class RTDCalc {
     /**
      * Nickel --------------------------------------------------------------------------------------
      */
-    strictfp double calculateNickel() {
-        return 0;
+    private final double NIC_A = 3.969d * Math.pow(10, -3);
+
+    private final double NIC_B = 3.969d * Math.pow(10, -6);
+
+    private final double NIC_ARR_D[] = {
+            144.096d,
+            -25.502d,
+            4.4876d
+    };
+
+    strictfp double calculateNickel(double R1, int R0, String spinnerValue) {
+        double A = NIC_A;
+        double B = NIC_B;
+        double D[] = NIC_ARR_D;
+
+        double result = 0d;
+
+        if (R1 / R0 < 1) {
+            result = (Math.sqrt((A * A) - 4.0d * B * (1 - (R1 / R0))) - A) / (2 * B);
+        } else if (R1 / R0 >= 1) {
+            for (int i = 1; i <= 3; i++) {
+                result += D[i - 1] * Math.pow(((R1 / R0) - 1.6172d), i);
+            }
+        }
+
+        result = new BigDecimal(result).setScale(Integer.valueOf(spinnerValue), RoundingMode.UP).doubleValue();
+
+        return result;
     }
 }

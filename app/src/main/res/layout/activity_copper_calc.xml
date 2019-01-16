@@ -43,7 +43,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/rgAlphaCopper"
+        android:id="@+id/rgAlphaCop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"

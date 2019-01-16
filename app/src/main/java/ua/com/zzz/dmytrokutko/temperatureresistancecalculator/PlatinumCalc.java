@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String spinnerNumber;
+    String spinnerValue;
     EditText etValue;
     TextView tvResult;
     RadioGroup rGroup, rgAlpha;
@@ -55,19 +55,19 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
                 switch (rbPtChecked.getText().toString()) {
                     case "R0 = 100":
                         R0 = 100;
-                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerNumber);
+                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerValue);
                         tvResult.setText("Result: " + String.valueOf(result));
                         break;
 
                     case "R0 = 500":
                         R0 = 500;
-                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerNumber);
+                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerValue);
                         tvResult.setText("Result: " + String.valueOf(result));
                         break;
 
                     case "R0 = 1000":
                         R0 = 1000;
-                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerNumber);
+                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerValue);
                         tvResult.setText("Result: " + String.valueOf(result));
                         break;
 
@@ -124,7 +124,7 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
      */
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        spinnerNumber = adapterView.getItemAtPosition(i).toString().trim();
+        spinnerValue = adapterView.getItemAtPosition(i).toString().trim();
     }
 
     @Override
