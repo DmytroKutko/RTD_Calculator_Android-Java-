@@ -105,9 +105,9 @@ class RTDCalc {
     /**
      * Nickel --------------------------------------------------------------------------------------
      */
-    private final double NIC_A = 3.969d * Math.pow(10, -3);
+    private final double NIC_A = 5.4963d * Math.pow(10, -3);
 
-    private final double NIC_B = 3.969d * Math.pow(10, -6);
+    private final double NIC_B = 6.7556d * Math.pow(10, -6);
 
     private final double NIC_ARR_D[] = {
             144.096d,
