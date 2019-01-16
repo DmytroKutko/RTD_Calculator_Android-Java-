@@ -2,24 +2,27 @@ package ua.com.zzz.dmytrokutko.temperatureresistancecalculator;
 
 class RTDCalc {
 
-    private final double arr_A[] = {
+    /**
+     * Platinum
+     */
+    private final double PT_ARR_A[] = {
             3.9083 * Math.pow(10, -3),
             3.969 * Math.pow(10, -3)
     };
 
-    private final double arr_B[] = {
+    private final double PT_ARR_B[] = {
             -5.775 * Math.pow(10, -7),
             -5.841 * Math.pow(10, -7)
     };
 
-    private final double arr_D1[] = {
+    private final double PT_ARR_D1[] = {
             255.819d,
             9.1455d,
             -2.92363d,
             1.7909d
     };
 
-    private final double arr_D2[] = {
+    private final double PT_ARR_D2[] = {
             251.903d,
             8.80035d,
             -2.91506d,
@@ -32,14 +35,14 @@ class RTDCalc {
         double B;
         double D[];
 
-        if (alpha.equals("0.00385 ℃")) {
-            D = arr_D1;
-            A = arr_A[0];
-            B = arr_B[0];
+        if (alpha.equals("@string/_0_00385")) {
+            D = PT_ARR_D1;
+            A = PT_ARR_A[0];
+            B = PT_ARR_B[0];
         } else {
-            D = arr_D2;
-            A = arr_A[1];
-            B = arr_B[1];
+            D = PT_ARR_D2;
+            A = PT_ARR_A[1];
+            B = PT_ARR_B[1];
         }
         double result = 0d;
 
@@ -53,4 +56,19 @@ class RTDCalc {
 
         return result;
     }
+
+    /**
+     * Copper
+     */
+    strictfp double calculateCopper(){
+        return 0;
+    }
+
+    /**
+     * Nickel
+     */
+    strictfp double calculateNickel(){
+        return 0;
+    }
+
 }

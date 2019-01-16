@@ -8,18 +8,22 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnPlatinum;
+    Button btnPlatinum, btnCopper, btnNickel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();
-        onBtnClickListener();
+        setInitialData();
     }
 
-    private void onBtnClickListener() {
+    private void setInitialData() {
+        initView();
+        initListener();
+    }
+
+    private void initListener() {
         btnPlatinum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,9 +31,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnCopper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CopperCalc.class);
+                startActivity(intent);
+            }
+        });
+
+        btnNickel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NickelCalc.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void init() {
+    private void initView() {
         btnPlatinum = findViewById(R.id.btnPlatinum);
+        btnCopper = findViewById(R.id.btnCopper);
+        btnNickel = findViewById(R.id.btnNickel);
     }
 }

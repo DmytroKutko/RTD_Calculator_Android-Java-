@@ -4,25 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnPlatinum"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:text="Platinum" />
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Platinum"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
+        android:id="@+id/btnCopper"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Copper"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
+        android:id="@+id/btnNickel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorPrimaryDark"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Nickel"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>

@@ -25,17 +25,25 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
     EditText etValue;
     TextView tvResult;
     RadioGroup rGroup, rgAlpha;
-    RadioButton rbChecked, rbAlphaChecked, rbDefaultPt, rbDefaultAlpha;
+    RadioButton rbPtChecked, rbAlphaChecked, rbDefaultPt, rbDefaultAlpha;
     Button btnCalculate;
     Spinner spinner;
-    RTDCalc rtdCalc = new RTDCalc();
+    RTDCalc rtdCalc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.platinum_calc);
-        init();
 
+        setInitialData();
+    }
+
+    private void setInitialData() {
+        initView();
+        initListener();
+    }
+
+    private void initListener() {
         spinner.setOnItemSelectedListener(this);
 
         btnCalculate.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +57,7 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
                 int R0;
                 double result;
 
-                switch (rbChecked.getText().toString()) {
+                switch (rbPtChecked.getText().toString()) {
                     case "Pt100":
                         R0 = 100;
                         result = rtdCalc.calculatePlatinum(R1, R0, alpha);
@@ -94,15 +102,16 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
     /**
      * Init all UI components
      */
-    private void init() {
+    private void initView() {
         etValue = findViewById(R.id.etValue);
         rGroup = findViewById(R.id.rgPt);
         rgAlpha = findViewById(R.id.rgAlpha);
         btnCalculate = findViewById(R.id.btnCalculate);
         tvResult = findViewById(R.id.tvResult);
         spinner = findViewById(R.id.spinner);
+        rtdCalc = new RTDCalc();
 
-        //Set defaults radio buttons
+        //Init and set default radio buttons
         rbDefaultPt = findViewById(R.id.rb100);
         rbDefaultAlpha = findViewById(R.id.rbAlpha1);
         rbDefaultPt.setChecked(true);
@@ -113,7 +122,6 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
                 R.array.spinner, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
-
     }
 
     /**
@@ -122,7 +130,7 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
     public void onRadioClick() {
         int selectedId = rGroup.getCheckedRadioButtonId();
         int selectedAlphaId = rgAlpha.getCheckedRadioButtonId();
-        rbChecked = findViewById(selectedId);
+        rbPtChecked = findViewById(selectedId);
         rbAlphaChecked = findViewById(selectedAlphaId);
     }
 
@@ -141,6 +149,6 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        //...
     }
 }

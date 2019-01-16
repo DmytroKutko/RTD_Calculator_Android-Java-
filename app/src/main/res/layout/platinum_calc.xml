@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="0.00385 ℃"
+            android:text="@string/_0_00385"
             android:textSize="18sp" />
 
         <RadioButton
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="0.00391 ℃"
+            android:text="@string/_0_00391"
             android:textSize="18sp" />
     </RadioGroup>
 

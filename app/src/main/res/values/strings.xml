@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TemperatureResistanceCalculator</string>
+    <string name="_0_00385">0.00385 ℃</string>
+    <string name="_0_00391">0.00391 ℃</string>
     <string-array name="spinner">
         <item>2</item>
         <item>3</item>
