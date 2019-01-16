@@ -1,18 +1,21 @@
 package ua.com.zzz.dmytrokutko.temperatureresistancecalculator;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 class RTDCalc {
 
     /**
-     * Platinum
+     * Platinum ------------------------------------------------------------------------------------
      */
     private final double PT_ARR_A[] = {
-            3.9083 * Math.pow(10, -3),
-            3.969 * Math.pow(10, -3)
+            3.9083d * Math.pow(10, -3),
+            3.969d * Math.pow(10, -3)
     };
 
     private final double PT_ARR_B[] = {
-            -5.775 * Math.pow(10, -7),
-            -5.841 * Math.pow(10, -7)
+            -5.775d * Math.pow(10, -7),
+            -5.841d * Math.pow(10, -7)
     };
 
     private final double PT_ARR_D1[] = {
@@ -29,13 +32,13 @@ class RTDCalc {
             1.67611d
     };
 
-    strictfp double calculatePlatinum(double R1, int R0, String alpha) {
+    strictfp double calculatePlatinum(double R1, int R0, String alpha, String spinnerValue) {
 
         double A;
         double B;
         double D[];
 
-        if (alpha.equals("@string/_0_00385")) {
+        if (alpha.equals("α = 0.00385 ℃")) {
             D = PT_ARR_D1;
             A = PT_ARR_A[0];
             B = PT_ARR_B[0];
@@ -48,27 +51,61 @@ class RTDCalc {
 
         if (R1 / R0 < 1) {
             for (int i = 1; i <= 4; i++) {
-                result += D[i - 1] * Math.pow((R1 / R0 - 1.0), i);
+                result += D[i - 1] * Math.pow((R1 / R0 - 1.0d), i);
             }
         } else if (R1 / R0 >= 1) {
-            result = (Math.sqrt((A * A) - 4.0 * B * (1 - (R1 / R0))) - A) / (2 * B);
+            result = (Math.sqrt((A * A) - 4.0d * B * (1 - (R1 / R0))) - A) / (2 * B);
         }
+
+        result = new BigDecimal(result).setScale(Integer.valueOf(spinnerValue), RoundingMode.UP).doubleValue();
 
         return result;
     }
 
     /**
-     * Copper
+     * Copper --------------------------------------------------------------------------------------
      */
-    strictfp double calculateCopper(){
-        return 0;
+    private final double COP_ARR_A[] = {
+            4.28d * Math.pow(10, -3),
+            4.26d * Math.pow(10, -3)
+    };
+
+    private final double COP_ARR_D[] = {
+            233.87d,
+            7.937d,
+            -2.0062d,
+            -0.3953d
+    };
+
+    strictfp double calculateCopper(double R1, int R0, String alpha, String spinnerValue) {
+        double A;
+        double D[] = COP_ARR_D;
+
+        if (alpha.equals("α = 0.00428 ℃")) {
+            A = COP_ARR_A[0];
+        } else {
+            A = COP_ARR_A[1];
+        }
+
+        double result = 0d;
+
+        if (R1 / R0 < 1) {
+            for (int i = 1; i <= 4; i++) {
+                result += D[i - 1] * Math.pow(((R1 / R0) - 1.0d), i);
+            }
+        } else if (R1 / R0 >= 1) {
+            result = ((R1 / R0) - 1) / A;
+        }
+
+        result = new BigDecimal(result).setScale(Integer.valueOf(spinnerValue), RoundingMode.UP).doubleValue();
+
+        return result;
     }
 
     /**
-     * Nickel
+     * Nickel --------------------------------------------------------------------------------------
      */
-    strictfp double calculateNickel(){
+    strictfp double calculateNickel() {
         return 0;
     }
-
 }

@@ -3,7 +3,6 @@ package ua.com.zzz.dmytrokutko.temperatureresistancecalculator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,13 +12,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import android.widget.Toast;
 
 public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-    private static final String TAG = "PlatinumCalc";
 
     String spinnerNumber;
     EditText etValue;
@@ -33,7 +28,7 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.platinum_calc);
+        setContentView(R.layout.activity_platinum_calc);
 
         setInitialData();
     }
@@ -58,29 +53,26 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
                 double result;
 
                 switch (rbPtChecked.getText().toString()) {
-                    case "Pt100":
+                    case "R0 = 100":
                         R0 = 100;
-                        result = rtdCalc.calculatePlatinum(R1, R0, alpha);
-                        result = roundNumber(result);
+                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerNumber);
                         tvResult.setText("Result: " + String.valueOf(result));
                         break;
 
-                    case "Pt500":
+                    case "R0 = 500":
                         R0 = 500;
-                        result = rtdCalc.calculatePlatinum(R1, R0, alpha);
-                        result = roundNumber(result);
+                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerNumber);
                         tvResult.setText("Result: " + String.valueOf(result));
                         break;
 
-                    case "Pt1000":
+                    case "R0 = 1000":
                         R0 = 1000;
-                        result = rtdCalc.calculatePlatinum(R1, R0, alpha);
-                        result = roundNumber(result);
+                        result = rtdCalc.calculatePlatinum(R1, R0, alpha, spinnerNumber);
                         tvResult.setText("Result: " + String.valueOf(result));
                         break;
 
                     default:
-                        Log.d(TAG, "onClick: Something goes wrong(");
+                        Toast.makeText(PlatinumCalc.this, "Error!!!", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -88,32 +80,20 @@ public class PlatinumCalc extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     * Round value
-     *
-     * @param result
-     * @return
-     */
-    private double roundNumber(double result) {
-        double round = result;
-        round = new BigDecimal(round).setScale(Integer.valueOf(spinnerNumber), RoundingMode.UP).doubleValue();
-        return round;
-    }
-
-    /**
      * Init all UI components
      */
     private void initView() {
-        etValue = findViewById(R.id.etValue);
+        etValue = findViewById(R.id.etValuePt);
         rGroup = findViewById(R.id.rgPt);
-        rgAlpha = findViewById(R.id.rgAlpha);
-        btnCalculate = findViewById(R.id.btnCalculate);
-        tvResult = findViewById(R.id.tvResult);
-        spinner = findViewById(R.id.spinner);
+        rgAlpha = findViewById(R.id.rgAlphaPt);
+        btnCalculate = findViewById(R.id.btnCalculatePt);
+        tvResult = findViewById(R.id.tvResultPt);
+        spinner = findViewById(R.id.spinnerPt);
         rtdCalc = new RTDCalc();
 
         //Init and set default radio buttons
-        rbDefaultPt = findViewById(R.id.rb100);
-        rbDefaultAlpha = findViewById(R.id.rbAlpha1);
+        rbDefaultPt = findViewById(R.id.rb100Pt);
+        rbDefaultAlpha = findViewById(R.id.rbAlpha1Pt);
         rbDefaultPt.setChecked(true);
         rbDefaultAlpha.setChecked(true);
 
