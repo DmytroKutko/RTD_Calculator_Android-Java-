@@ -51,10 +51,10 @@ class RTDCalc {
 
         if (R1 / R0 < 1) {
             for (int i = 1; i <= 4; i++) {
-                result += D[i - 1] * Math.pow((R1 / R0 - 1.0d), i);
+                result += D[i - 1] * Math.pow((R1 / R0 - 1), i);
             }
         } else if (R1 / R0 >= 1) {
-            result = (Math.sqrt((A * A) - 4.0d * B * (1 - (R1 / R0))) - A) / (2 * B);
+            result = (Math.sqrt((A * A) - 4 * B * (1 - (R1 / R0))) - A) / (2 * B);
         }
 
         result = new BigDecimal(result).setScale(Integer.valueOf(spinnerValue), RoundingMode.UP).doubleValue();
@@ -81,7 +81,7 @@ class RTDCalc {
         double A;
         double D[] = COP_ARR_D;
 
-        if (alpha.equals("α = 0.00428 ℃")) {
+        if (alpha.equals("α = 0.00426 ℃")) {
             A = COP_ARR_A[0];
         } else {
             A = COP_ARR_A[1];
@@ -91,7 +91,7 @@ class RTDCalc {
 
         if (R1 / R0 < 1) {
             for (int i = 1; i <= 4; i++) {
-                result += D[i - 1] * Math.pow(((R1 / R0) - 1.0d), i);
+                result += D[i - 1] * Math.pow(((R1 / R0) - 1), i);
             }
         } else if (R1 / R0 >= 1) {
             result = ((R1 / R0) - 1) / A;
